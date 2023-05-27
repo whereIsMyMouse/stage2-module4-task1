@@ -89,7 +89,7 @@ public class Employee {
         public void setCarNumber(String carNumber){
         }
 
-        public Employee getResult(){
+        public Employee build(){
             return new Employee();
         }
     }

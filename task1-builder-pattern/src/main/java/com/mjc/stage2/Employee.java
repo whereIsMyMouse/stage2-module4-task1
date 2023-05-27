@@ -70,23 +70,30 @@ public class Employee {
 
     public static class EmployeeBuilder {
 
-        public void setName(String name){
-            // Write your code here!
+
+        public EmployeeBuilder setName(String name){
+            return this;
         }
 
-        public void setLastName(String lastName){
+        public EmployeeBuilder setLastName(String lastName){
+                        return this;
         }
 
-        public void setPosition(String position){
+        public EmployeeBuilder setPosition(String position){
+            return this;
         }
 
-        public void setEmail(String email){
+        public EmployeeBuilder setEmail(String email){
+            return this;
         }
 
-        public void setPhone(String phone){
+        public EmployeeBuilder setPhone(String phone){
+
+            return this;
         }
 
-        public void setCarNumber(String carNumber){
+        public EmployeeBuilder setCarNumber(String carNumber){
+                        return this;
         }
 
         public Employee build(){

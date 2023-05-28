@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class H2ConnectionFactory implements ConnectionFactory {
-    @Override
-    public Connection createConnection() {
+    private static Connection con = null;
+    static
+    {
         try {
-            // Load properties from the file
             Properties props = new Properties();
             FileInputStream fis = new FileInputStream("h2database.properties");
             props.load(fis);
@@ -21,15 +21,18 @@ public class H2ConnectionFactory implements ConnectionFactory {
             String url = props.getProperty("db_url");
             String user = props.getProperty("user");
             String password = props.getProperty("password");
-
+            String jdbc_driver = props.getProperty("jdbc_driver");
             // Establish the database connection
-            Connection connection = DriverManager.getConnection(url, user, password);
-            return connection;
-        } catch (IOException | SQLException e) {
+            Class.forName(jdbc_driver);
+            con = DriverManager.getConnection(url, user, password);
+        } catch (IOException | ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
-        return null;
     }
-    // Write your code here!
+    }
+
+    @Override
+    public Connection createConnection() {
+        return con;
+    }
 }
 
